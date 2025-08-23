@@ -1,0 +1,42 @@
+class Student{
+    private String name;
+    private int rollno;
+    private int mark;
+
+Student(String name,int rollno,int mark){
+    this.name = name;
+    this.rollno = rollno;
+    this.mark = mark;
+}
+public String getname(){
+    return name;
+}
+public int getrollno(){
+    return rollno;
+}
+public int getmark(){
+    return mark;
+}
+public void setname(String name){
+    this.name = name;
+}
+public void setrollno(int rollno){
+    this.rollno = rollno;
+}
+public void setmark(int mark){
+    if(mark>0&&mark<=100){
+    this.mark = mark;
+    }
+    else{
+        System.out.println("Invalid");
+    }
+}
+
+// public class Main{
+public static void main(String[] args){
+    Student s = new Student("mani",307,99);
+    System.out.println(s.getname());
+    s.setmark(55);
+    System.out.println(s.getmark());
+}
+}

@@ -1,0 +1,21 @@
+IS SUBSEQUENCE
+
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        int prev = 0;
+        for(int i=0;i<s.length();i++){
+            int check =0;
+            for(int j=prev;j<t.length();j++){
+                if(s.charAt(i)==t.charAt(j)){
+                    prev = j+1;
+                    check++;
+                    break;
+                }
+            }
+            if(check==0){
+                return false;
+            }
+        }
+        return true;
+    }
+}

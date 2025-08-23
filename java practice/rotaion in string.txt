@@ -1,0 +1,27 @@
+class Main {
+    public static void main(String[] args) {
+        String w1 = "ABCD";
+        String w2 = "CDAB";
+        if(w1.length()!=w2.length()){
+            System.out.println("No");
+            return;
+        }
+        w1 = w1.toLowerCase();
+        w2 = w2.toLowerCase();
+        char[] ans = w1.toCharArray();
+        int count =0;
+        while(count<ans.length){
+            char temp = ans[0];
+            for(int i=0;i<ans.length-1;i++){
+                ans[i]=ans[i+1];
+            }
+            ans[ans.length-1] = temp;
+            if(new String(ans).equals(w2)){
+                System.out.println("Yes");
+                return;
+            }
+            count++;
+        }
+        System.out.println("No");
+    }
+}
