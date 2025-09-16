@@ -1,0 +1,35 @@
+//2197. Replace Non-Coprime Numbers in Array
+
+
+class Solution {
+    public List<Integer> replaceNonCoprimes(int[] nums) {
+        List<Integer> list = new ArrayList<>();
+        for (int num : nums) {
+            list.add(num);
+        }
+
+        int i = 0;
+        while (i < list.size() - 1) {
+            int a = list.get(i);
+            int b = list.get(i + 1);
+            int gcd = gcd(a, b);
+            if (gcd == 1) {
+                i++;
+            } else {
+                long lcm = (long) a * b / gcd; 
+                list.remove(i + 1);
+                list.remove(i);
+                list.add(i, (int) lcm);
+                if (i > 0) {
+                    i--;
+                }
+            }
+        }
+        return list;
+    }
+
+    public int gcd(int a, int b) {
+        if (b == 0) return a;
+        return gcd(b, a % b);
+    }
+}

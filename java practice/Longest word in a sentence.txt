@@ -1,0 +1,53 @@
+//LONGEST WORD IN A SENTENCE
+
+public class Main
+{
+	public static void main(String[] args) {
+		String w = "Type here to search";
+		String ano = "";
+		String ans = "";
+		int i=0;
+		while(i<w.length()){
+		    char c = w.charAt(i);
+		    if(c!=' '){
+		        ans+=c;
+		    }
+		    else{
+		        if(ans.length()>ano.length()){
+		            ano=ans;
+		        }
+		        ans="";
+		    }
+		    i++;
+		}
+		if(ans.length()>ano.length()){
+		            ano=ans;
+		            ans="";
+		        }
+		System.out.println(ano);
+	}
+}
+
+
+
+                        (OR)
+
+
+
+
+public class Main
+{
+	public static void main(String[] args) {
+		String w = "Type here to search";
+		String[] a = w.trim().split("\\s+");
+		String ans = "";
+		int i=0;
+		while(i<a.length){
+		    if(a[i].length()>ans.length()){
+		        ans = a[i];
+		    }
+		    i++;
+		}
+		System.out.println(ans);
+	}
+}

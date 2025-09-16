@@ -1,0 +1,36 @@
+import java.util.*;
+class Student{
+    String name;
+    int rno;
+    float mark;
+    Student(String name,int rno,float mark){
+        this.name = name;
+        this.rno = rno;
+        this.mark = mark;
+    }
+}
+public class Main{
+    public static void main(String args[]){
+     Scanner scan = new Scanner(System.in);
+     ArrayList<Student> ss = new ArrayList<>();
+     System.out.println("Enter size: ");
+     int n = scan.nextInt();
+     scan.nextLine();
+     for(int i=0;i<n;i++){
+         System.out.println("Enter name: ");
+         String name = scan.nextLine();
+         
+         System.out.println("Enter rollno: ");
+         int rno = scan.nextInt();
+         
+         System.out.println("Enter Mark: ");
+         float mark = scan.nextFloat();
+         scan.nextLine();
+         
+         ss.add(new Student(name,rno,mark));
+     }
+     for(Student m:ss){
+         System.out.println(m.name+ "-"+m.rno+"-"+m.mark);
+     }
+    }
+}

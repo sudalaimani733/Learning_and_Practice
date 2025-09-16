@@ -1,0 +1,141 @@
+// Definition for singly-linked list
+class ListNode {
+    int val;
+    ListNode next;
+    ListNode() {}
+    ListNode(int val) { this.val = val; }
+    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+}
+
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head == null){
+            return head;
+        }
+        ListNode prev = null;
+        ListNode present = head;
+        ListNode next = present.next;
+
+        while(present != null){
+            present.next = prev;
+            prev = present;
+            present = next;
+            if(next != null){
+                next = next.next;
+            }
+        }
+        head = prev;
+        return head;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create the linked list: 1 -> 2 -> 3 -> 4 -> 5
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(3);
+        head.next.next.next = new ListNode(4);
+        head.next.next.next.next = new ListNode(5);
+
+        // Show original list
+        System.out.println("Original List:");
+        printList(head);
+
+        // Reverse the list
+        Solution solution = new Solution();
+        head = solution.reverseList(head);
+
+        // Show reversed list
+        System.out.println("Reversed List:");
+        printList(head);
+    }
+
+    // Helper method to print the list
+    public static void printList(ListNode head) {
+        while(head != null){
+            System.out.print(head.val + " -> ");
+            head = head.next;
+        }
+        System.out.println("null");
+    }
+}
+
+
+
+
+
+               (OR)
+
+
+
+
+
+public class Rev {
+    Node head;
+
+    public class Node {
+        int data;
+        Node next;
+
+        public Node(int data) {
+            this.data = data;
+        }
+
+        public Node(int data, Node next) {
+            this.data = data;
+            this.next = next;
+        }
+    }
+
+    // Method to reverse the list
+    public Node Ano(Node head) {
+        Node prev = null;
+        Node present = head;
+        Node next = (present != null) ? present.next : null;
+
+        while (present != null) {
+            present.next = prev;
+            prev = present;
+            present = next;
+            if (next != null) {
+                next = next.next;
+            }
+        }
+        head = prev;
+        return head;
+    }
+
+    // Helper method to print the list
+    public void printList(Node head) {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        }
+        System.out.println("null");
+    }
+
+    // Main method to run the example
+    public static void main(String[] args) {
+        Rev rev = new Rev();
+        
+        // Create the linked list: 1 -> 2 -> 3 -> 4 -> 5
+        rev.head = rev.new Node(1);
+        rev.head.next = rev.new Node(2);
+        rev.head.next.next = rev.new Node(3);
+        rev.head.next.next.next = rev.new Node(4);
+        rev.head.next.next.next.next = rev.new Node(5); //the Node class is inside the Rev class so if we want to acess the Node class then we need to use the reference of Main class(rev)
+
+        // Print original list
+        System.out.println("Original List:");
+        rev.printList(rev.head);
+
+        // Reverse the list
+        rev.head = rev.Ano(rev.head);
+
+        // Print reversed list
+        System.out.println("Reversed List:");
+        rev.printList(rev.head);
+    }
+}

@@ -1,0 +1,76 @@
+//966. Vowel Spellchecker
+
+
+class Solution {
+    public String[] spellchecker(String[] wordlist, String[] queries) {
+        String[] arr = new String[queries.length];
+        
+        // Preprocess: Build the vowel error map
+        Map<String, String> vowelMap = new HashMap<>();
+        for (String word : wordlist) {
+            String key = devowel(word.toLowerCase());
+            vowelMap.putIfAbsent(key, word); // Only first occurrence is stored
+        }
+        
+        int k = 0;
+        int i = 0;
+        while (i < queries.length) {
+            // Exact match
+            for (int j = 0; j < wordlist.length; j++) {
+                if (queries[i].equals(wordlist[j])) {
+                    arr[i] = wordlist[j];
+                    k = 1;
+                    break;
+                }
+            }
+            
+            // Case-insensitive match
+            if (k == 0) {
+                for (int j = 0; j < wordlist.length; j++) {
+                    if (queries[i].equalsIgnoreCase(wordlist[j])) {
+                        arr[i] = wordlist[j];
+                        k = 1;
+                        break;
+                    }
+                }
+            }
+            
+            // Vowel error match
+            if (k == 0) {
+                String key = devowel(queries[i].toLowerCase());
+                if (vowelMap.containsKey(key)) {
+                    arr[i] = vowelMap.get(key);
+                    k = 1;
+                }
+            }
+            
+            // No match
+            if (k == 0) {
+                arr[i] = "";
+            }
+            
+            k = 0;
+            i++;
+        }
+        
+        return arr;
+    }
+    
+    // Helper method to replace vowels with '*'
+    private String devowel(String word) {
+        StringBuilder sb = new StringBuilder();
+        for (char c : word.toCharArray()) {
+            if (isVowel(c)) {
+                sb.append('*');
+            } else {
+                sb.append(c);
+            }
+        }
+        return sb.toString();
+    }
+    
+    // Helper method to check if a character is a vowel
+    private boolean isVowel(char c) {
+        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
+    }
+}
